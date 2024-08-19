@@ -14,6 +14,32 @@ const Player = ({ song }) => {
 	const [currentSongIndex, setCurrentSongIndex] = useState(0); // Current song index
 
 	const currentSong = song[currentSongIndex];
+	console.log(currentSong, "vurrentttttt")
+
+	 // Ensure playlist is defined and has at least one song
+	 const hasSongs = song && song.length > 0;
+
+	 useEffect(() => {
+		 if (hasSongs) {
+			 const fetchAudioUrl = async () => {
+				 try {
+					 const response = await axios.get(song[currentSongIndex].url, {
+						 responseType: 'arraybuffer', // Important to get the raw binary data
+					 });
+ 
+					 const blob = new Blob([response.data], { type: 'audio/mpeg' }); // Create a Blob from the data
+					 const url = window.URL.createObjectURL(blob); // Generate a URL for the Blob
+					 console.clear();
+					 console.log(blob, "Audio Blob Loaded");
+					 setAudioUrl(url);
+				 } catch (error) {
+					 console.error('Error fetching the audio file:', error);
+				 }
+			 };
+ 
+			 fetchAudioUrl();
+		 }
+	 }, [currentSongIndex, hasSongs, song]);
 
 
 	useEffect(() => {
@@ -106,6 +132,9 @@ const Player = ({ song }) => {
 					</audio>
 					<div className="player-controls">
 						<div className="song-info">
+							 {/* <p className="song-title">{currentSong.name}</p>
+                            <p className="song-artist">{currentSong.artist}</p>
+                            <img src={`https://cms.samespace.com/assets/${currentSong.cover}`} alt={currentSong.name} className="cover" /> */}
 							<p className="song-title">{song.name}</p>
 							<p className="song-artist">{song.artist}</p>
 							<img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.title} className="cover" />
@@ -119,21 +148,21 @@ const Player = ({ song }) => {
 						<br></br>
 
 						<div className="action-buttons">
-							<button className="btn">
+							<button className="btn circular-btn">
 								<FontAwesomeIcon icon={faEllipsis} />
 							</button>
 							<div className="center-actions">
-								<button className="btn" onClick={handleBackward}>
+								<button className="btn back-forth-btn" onClick={handleBackward}>
 									<FontAwesomeIcon icon={faBackward} />
 								</button>
 								<button onClick={togglePlayPause} className="btn play-pause-btn">
 									<FontAwesomeIcon icon={isPlaying ? faCirclePause : faCirclePlay} />
 								</button>
-								<button className="btn" onClick={handleForward}>
+								<button className="btn back-forth-btn" onClick={handleForward}>
 									<FontAwesomeIcon icon={faForward} />
 								</button>
 							</div>
-							<button className="btn" onClick={toggleMute}>
+							<button className="btn circular-btn" onClick={toggleMute}>
 								<FontAwesomeIcon icon={isMuted ? faVolumeMute : faVolumeHigh} />
 							</button>
 						</div>

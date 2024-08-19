@@ -12,13 +12,26 @@
 	.btn {
 		background: none;
 		border: none;
-		color: white;
-		font-size: 24px;
+		font-size: 16px;
 		cursor: pointer;
 	}
 
+	.circular-btn {
+		width: 32px;
+		height: 32px;
+		border-radius: 50px;
+		color: white;
+		border: none;
+		background: #464646;
+	}
+
+	.back-forth-btn {
+		color: #808080;
+	}
+
 	.play-pause-btn {
-		font-size: 48px;
+		font-size: 42px;
+		color: white;
 	}
 
 	.play-pause-btn:focus {
@@ -27,12 +40,15 @@
 
 	.action-buttons {
 		display: flex;
+		align-items: center;
 		justify-content: space-between;
 	}
 
 	.center-actions {
 		display: flex;
-		align-items: center;
+        align-items: center;
+        width: 200px;
+        justify-content: space-evenly;
 	}
 }
 
@@ -48,6 +64,7 @@
 	padding: 12px 0px;
 	margin: 0;
 }
+
 /* .player {
   background: linear-gradient(135deg, #1db954, #191414);
   padding: 20px;
