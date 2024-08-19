@@ -4,61 +4,34 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEllipsis, faVolumeHigh, faCirclePlay, faCirclePause, faBackward, faForward, faVolumeMute } from '@fortawesome/free-solid-svg-icons';
 import './Player.css';
 
-const Player = ({ song }) => {
+const Player = ({ song, changeCurrentSong }) => {
 	const audioRef = useRef(null);
 	const [isPlaying, setIsPlaying] = useState(false);
+	const [isProgressBar, setIsProgressBar] = useState(true);
 	const [progress, setProgress] = useState(0);
 	const [audioUrl, setAudioUrl] = useState(null);
-	const [volume, setVolume] = useState(0.5); // Initial volume at 50%
+	const [volume] = useState(0.5); // Initial volume at 50%
 	const [isMuted, setIsMuted] = useState(false); // Mute state
-	const [currentSongIndex, setCurrentSongIndex] = useState(0); // Current song index
-
-	const currentSong = song[currentSongIndex];
-	console.log(currentSong, "vurrentttttt")
-
-	 // Ensure playlist is defined and has at least one song
-	 const hasSongs = song && song.length > 0;
-
-	 useEffect(() => {
-		 if (hasSongs) {
-			 const fetchAudioUrl = async () => {
-				 try {
-					 const response = await axios.get(song[currentSongIndex].url, {
-						 responseType: 'arraybuffer', // Important to get the raw binary data
-					 });
- 
-					 const blob = new Blob([response.data], { type: 'audio/mpeg' }); // Create a Blob from the data
-					 const url = window.URL.createObjectURL(blob); // Generate a URL for the Blob
-					 console.clear();
-					 console.log(blob, "Audio Blob Loaded");
-					 setAudioUrl(url);
-				 } catch (error) {
-					 console.error('Error fetching the audio file:', error);
-				 }
-			 };
- 
-			 fetchAudioUrl();
-		 }
-	 }, [currentSongIndex, hasSongs, song]);
-
 
 	useEffect(() => {
 		const fetchAudioUrl = async () => {
 			try {
+				setIsProgressBar(false);
 				const response = await axios.get(song.url, {
 					responseType: 'arraybuffer', // Important to get the raw binary data
 				});
-
 				const blob = new Blob([response.data], { type: 'audio/mpeg' }); // Create a Blob from the data
 				const url = window.URL.createObjectURL(blob); // Generate a URL for the Blob
 				console.clear();
 				console.log(blob, "hhhhh");
 				setAudioUrl(url);
+				setProgress(0);
+				console.log(progress, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+				setIsProgressBar(true);
 			} catch (error) {
 				console.error('Error fetching the audio file:', error);
 			}
 		};
-
 		fetchAudioUrl();
 	}, [song.id]);
 
@@ -69,19 +42,14 @@ const Player = ({ song }) => {
 	}, [volume, isMuted]);
 
 	const handleBackward = () => {
-		setCurrentSongIndex((prevIndex) =>
-			prevIndex === 0 ? song.length - 1 : prevIndex - 1
-		);
+		changeCurrentSong('previous');
 		setIsPlaying(true);
 	};
 
 	const handleForward = () => {
-		setCurrentSongIndex((prevIndex) =>
-			prevIndex === song.length - 1 ? 0 : prevIndex + 1
-		);
+		changeCurrentSong('next');
 		setIsPlaying(true);
 	};
-
 
 	useEffect(() => {
 		if (audioRef.current && audioUrl) {
@@ -105,13 +73,23 @@ const Player = ({ song }) => {
 		if (audioRef.current) {
 			const currentTime = audioRef.current.currentTime;
 			const duration = audioRef.current.duration;
-			setProgress((currentTime / duration) * 100);
+			if(isNaN(duration)) {
+				setProgress(0);
+			} else {
+				setProgress((currentTime / duration) * 100);
+			}
+		} else {
+			setProgress(0);
 		}
+		// setProgress(0);
+		console.log(progress, "bhsjdbjjj");
 	};
 
 	const handleSeek = (e) => {
 		const seekTime = (e.target.value / 100) * audioRef.current.duration;
 		audioRef.current.currentTime = seekTime;
+		console.log(seekTime, "abcccccc");
+		console.log(progress, "pgggggggg");
 	};
 
 	const toggleMute = () => {
@@ -132,19 +110,19 @@ const Player = ({ song }) => {
 					</audio>
 					<div className="player-controls">
 						<div className="song-info">
-							 {/* <p className="song-title">{currentSong.name}</p>
+							{/* <p className="song-title">{currentSong.name}</p>
                             <p className="song-artist">{currentSong.artist}</p>
                             <img src={`https://cms.samespace.com/assets/${currentSong.cover}`} alt={currentSong.name} className="cover" /> */}
 							<p className="song-title">{song.name}</p>
 							<p className="song-artist">{song.artist}</p>
 							<img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.title} className="cover" />
 						</div>
-						<input
+						{isProgressBar && <input
 							type="range"
 							value={progress}
 							onChange={handleSeek}
 							className="seeker"
-						/>
+						/>}
 						<br></br>
 
 						<div className="action-buttons">

@@ -11,11 +11,11 @@ const SongList = ({ songs, currentSong, onSelectSong }) => {
 
     return (
         <div className="song-list">
-            {songs.map(song => (
+            {songs.map((song, index) => (
                 <div
                     key={song.id}
                     className={`song-item ${currentSong && currentSong.id === song.id ? 'active' : ''}`}
-                    onClick={() => onSelectSong(song)}
+                    onClick={() => onSelectSong(song, index)}
                 >
                     {song.cover && <img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.name} />}
                     <div className="song-info">
