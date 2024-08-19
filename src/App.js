@@ -58,10 +58,10 @@ const App = () => {
 
 	return (
 		<div className="app">
-			<div>
-				<img className="spotify-logo" src={spotifyLogoImg} alt="Spotify Logo Image" />
+			<div className="first-section">
+				<img className="spotify-logo" src={spotifyLogoImg} alt="Spotify Logo" />
 			</div>
-			<div>
+			<div className="second-section">
 				<Tabs currentTab={tab} onTabChange={setTab} />
 				<SearchBar onSearch={handleSearch} />
 

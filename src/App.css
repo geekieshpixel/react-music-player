@@ -57,9 +57,17 @@
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  flex-direction: column;
+  /* flex-direction: column; */
   height: 100vh;
   padding: 20px;
   background-color: #181818;
   color: white;
+}
+
+.first-section {
+  width: 250px;
+}
+
+.second-section {
+  width: 450px;
 }
