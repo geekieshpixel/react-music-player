@@ -1,5 +1,13 @@
 .search-bar {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 10px;
+  background-color: #282828;
+  border: none;
+  color: white;
+  border-radius: 6px;
 }
 
 .search-bar input {
@@ -9,4 +17,12 @@
   border: none;
   color: white;
   border-radius: 6px;
+}
+
+.input-icon {
+  color: #6c6c6c;
+}
+
+.search-bar input:focus {
+  outline: none; 
 }
