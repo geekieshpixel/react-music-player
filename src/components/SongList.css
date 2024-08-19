@@ -45,3 +45,34 @@
     border-radius: 6px;
     background-color: #282828;
 }
+
+@media (max-width: 768px) {
+    .song-item img {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .song-name {
+      font-size: 16px;
+    }
+  
+    .song-artist {
+      font-size: 12px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .song-item img {
+      width: 30px;
+      height: 30px;
+    }
+  
+    .song-name {
+      font-size: 14px;
+    }
+  
+    .song-artist {
+      font-size: 10px;
+    }
+  }
+  

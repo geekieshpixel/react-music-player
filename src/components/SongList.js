@@ -2,9 +2,6 @@ import React from 'react';
 import './SongList.css';
 
 const SongList = ({ songs, currentSong, onSelectSong }) => {
-    console.log(songs)
-    console.log(!songs);
-    console.log(songs.length);
     if (!songs || songs.length === 0) {
         return <div>No songs available</div>;
     }

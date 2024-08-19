@@ -19,7 +19,6 @@ const App = () => {
 		const fetchSongs = async () => {
 			try {
 				const response = await axios.get('https://cms.samespace.com/items/songs');
-				console.log(response.data.data);
 				setSongs(response.data.data);
 				setCurrentSong(response.data.data[0]);
 			} catch (error) {
@@ -43,7 +42,6 @@ const App = () => {
 	}
 
 	const changeCurrentSongByAction = (action) => {
-		console.log(action,"actionnnnnn");
 		if (action === 'next') {
 			setCurrentIndex(currentIndex + 1);
 			setCurrentSong(songs[currentIndex]);

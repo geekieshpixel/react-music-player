@@ -10,23 +10,21 @@ const Player = ({ song, changeCurrentSong }) => {
 	const [isProgressBar, setIsProgressBar] = useState(true);
 	const [progress, setProgress] = useState(0);
 	const [audioUrl, setAudioUrl] = useState(null);
-	const [volume] = useState(0.5); // Initial volume at 50%
-	const [isMuted, setIsMuted] = useState(false); // Mute state
+	const [volume] = useState(0.5);
+	const [isMuted, setIsMuted] = useState(false);
 
 	useEffect(() => {
 		const fetchAudioUrl = async () => {
 			try {
 				setIsProgressBar(false);
 				const response = await axios.get(song.url, {
-					responseType: 'arraybuffer', // Important to get the raw binary data
+					responseType: 'arraybuffer', 
 				});
-				const blob = new Blob([response.data], { type: 'audio/mpeg' }); // Create a Blob from the data
-				const url = window.URL.createObjectURL(blob); // Generate a URL for the Blob
+				const blob = new Blob([response.data], { type: 'audio/mpeg' });
+				const url = window.URL.createObjectURL(blob); 
 				console.clear();
-				console.log(blob, "hhhhh");
 				setAudioUrl(url);
 				setProgress(0);
-				console.log(progress, "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 				setIsProgressBar(true);
 			} catch (error) {
 				console.error('Error fetching the audio file:', error);
@@ -34,6 +32,7 @@ const Player = ({ song, changeCurrentSong }) => {
 		};
 		fetchAudioUrl();
 	}, [song.id]);
+	
 
 	useEffect(() => {
 		if (audioRef.current) {
@@ -82,20 +81,16 @@ const Player = ({ song, changeCurrentSong }) => {
 			setProgress(0);
 		}
 		// setProgress(0);
-		console.log(progress, "bhsjdbjjj");
 	};
 
 	const handleSeek = (e) => {
 		const seekTime = (e.target.value / 100) * audioRef.current.duration;
 		audioRef.current.currentTime = seekTime;
-		console.log(seekTime, "abcccccc");
-		console.log(progress, "pgggggggg");
 	};
 
 	const toggleMute = () => {
 		setIsMuted(!isMuted);
 	};
-
 
 	return (
 		<div className="player">
@@ -110,9 +105,6 @@ const Player = ({ song, changeCurrentSong }) => {
 					</audio>
 					<div className="player-controls">
 						<div className="song-info">
-							{/* <p className="song-title">{currentSong.name}</p>
-                            <p className="song-artist">{currentSong.artist}</p>
-                            <img src={`https://cms.samespace.com/assets/${currentSong.cover}`} alt={currentSong.name} className="cover" /> */}
 							<p className="song-title">{song.name}</p>
 							<p className="song-artist">{song.artist}</p>
 							<img src={`https://cms.samespace.com/assets/${song.cover}`} alt={song.title} className="cover" />

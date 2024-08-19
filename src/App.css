@@ -14,15 +14,14 @@
 
 .user-profile {
 	height: 50px;
-    width: 50px;
-    border-radius: 50px;
+	width: 50px;
+	border-radius: 50%;
 }
 
 .app {
 	display: flex;
 	flex-wrap: wrap;
 	gap: 20px;
-	/* flex-direction: column; */
 	height: 100vh;
 	padding: 24px;
 	background-color: #181818;
@@ -31,19 +30,13 @@
 
 .first-section {
 	display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+	flex-direction: column;
+	justify-content: space-between;
 	width: 250px;
 }
 
 .second-section {
 	width: 450px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-	.App-logo {
-		animation: App-logo-spin infinite 20s linear;
-	}
 }
 
 .App-header {
@@ -65,18 +58,52 @@
 	from {
 		transform: rotate(0deg);
 	}
-
 	to {
 		transform: rotate(360deg);
 	}
 }
 
+@media (prefers-reduced-motion: no-preference) {
+	.App-logo {
+		animation: App-logo-spin infinite 20s linear;
+	}
+}
+
+@media (max-width: 1024px) {
+	.first-section {
+		width: 200px;
+	}
+	.second-section {
+		width: 350px;
+	}
+}
+
 @media (max-width: 768px) {
+	.App {
+		flex-direction: column;
+	}
+	.first-section,
+	.second-section {
+		width: 100%;
+	}
 	.AppWrapper {
 		padding: 10px;
 	}
-
 	.PlayerWrapper {
 		max-width: 100%;
+	}
+}
+
+@media (max-width: 480px) {
+	.App-logo {
+		height: 30vmin;
+	}
+	.spotify-logo {
+		height: 36px;
+		width: auto;
+	}
+	.user-profile {
+		height: 40px;
+		width: 40px;
 	}
 }
