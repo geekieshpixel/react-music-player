@@ -1,0 +1,132 @@
+.player-container {
+	display: flex;
+	flex: 1;
+	align-items: center;
+	justify-content: center;
+
+	input {
+		width: 100%;
+		margin: 16px 0px;
+	}
+
+	.btn {
+		background: none;
+		border: none;
+		color: white;
+		font-size: 24px;
+		cursor: pointer;
+	}
+
+	.play-pause-btn {
+		font-size: 48px;
+	}
+
+	.play-pause-btn:focus {
+		outline: none;
+	}
+
+	.action-buttons {
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.center-actions {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.song-title {
+	font-size: 35px;
+	font-weight: bold;
+	padding: 0;
+	margin: 0;
+}
+
+.song-artist {
+	font-size: 15px;
+	padding: 12px 0px;
+	margin: 0;
+}
+/* .player {
+  background: linear-gradient(135deg, #1db954, #191414);
+  padding: 20px;
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  max-width: 400px;
+  margin: auto;
+}
+
+.player-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+} */
+
+/* .player-controls button {
+  background-color: #1db954;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.player-controls button:hover {
+  background-color: #1ed760;
+} */
+
+.seeker {
+	width: 100%;
+	-webkit-appearance: none;
+	appearance: none;
+	height: 4px;
+	border-radius: 2px;
+	background: #808080;
+	outline: none;
+	margin: 10px 0;
+}
+
+.seeker::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #fff;
+	cursor: pointer;
+}
+
+.seeker::-moz-range-thumb {
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background: #fff;
+	cursor: pointer;
+}
+
+@media (max-width: 600px) {
+	.player {
+		padding: 15px;
+		border-radius: 10px;
+	}
+
+	.player-controls button {
+		padding: 8px 16px;
+	}
+
+	.song-info p {
+		font-size: 1rem;
+	}
+
+	.song-info p:last-child {
+		font-size: 0.8rem;
+	}
+}
