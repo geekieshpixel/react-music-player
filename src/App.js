@@ -33,8 +33,8 @@ const App = () => {
 		setSearchQuery(query.toLowerCase());
 	};
 
-	const topTracks = songs.filter(song => song.top_track);
-
+	const topTracks = songs.filter(song => song.top_track && song && song.name && song.artist &&
+		(song.name.toLowerCase().includes(searchQuery) || song.artist.toLowerCase().includes(searchQuery)));
 
 	const changeCurrentSong = (song, index) => {
 		setCurrentSong(song);
