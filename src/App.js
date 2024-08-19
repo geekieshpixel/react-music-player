@@ -6,6 +6,7 @@ import Tabs from './components/Tabs';
 import './App.css';
 import axios from 'axios';
 import spotifyLogoImg from './assets/spotify-logo.png';
+import userProfileImg from './assets/user-profile.jpg';
 
 const App = () => {
 	const [songs, setSongs] = useState([]);
@@ -60,6 +61,7 @@ const App = () => {
 		<div className="app">
 			<div className="first-section">
 				<img className="spotify-logo" src={spotifyLogoImg} alt="Spotify Logo" />
+				<img className="user-profile" src={userProfileImg} alt="User Profile" />
 			</div>
 			<div className="second-section">
 				<Tabs currentTab={tab} onTabChange={setTab} />

@@ -12,6 +12,12 @@
 	width: 152px;
 }
 
+.user-profile {
+	height: 50px;
+    width: 50px;
+    border-radius: 50px;
+}
+
 .app {
 	display: flex;
 	flex-wrap: wrap;
@@ -24,6 +30,9 @@
 }
 
 .first-section {
+	display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 	width: 250px;
 }
 
